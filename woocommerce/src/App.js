@@ -16,8 +16,8 @@ function App() {
   const handleClick = (evt) => {
     evt.preventDefault();
     let imageList = Object.values(image).map((item, index) => {
-      console.log(item);
-      return { src: item };
+  
+      return { "src": item };
     });
     const category = checkData.map((item) => {
   
