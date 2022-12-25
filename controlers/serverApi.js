@@ -22,12 +22,6 @@
   
 
 
-
-
-
-  
-
-
  const uploudProduct =  ( req , res) => {
 const [inputData,category,imageLink,tags] =req.body
 
@@ -39,9 +33,9 @@ const [inputData,category,imageLink,tags] =req.body
     external_url: inputData.link,
     tags:tags,
     categories: category,
-    short_description: `Tailles : M-2XL
+    short_description: inputData.description?  inputData.description :`Tailles : M-2XL
     Sélection de l'article selon le code couleur/modèle qui apparaît sur les photos du poste,
-    Faites correspondre le code/la couleur dans le lien en fonction des images de publication.`,
+    Faites correspondr e le code/la couleur dans le lien en fonction des images de publication.`,
     //its about how to buy its static
     description: `Une explication sur la façon d’acheter un produit caché :
   « Produit caché » comme on l’appelle : un produit que nous commanderons avec Express et un autre produit apparaîtra sur les photos du produit.
@@ -61,11 +55,13 @@ const [inputData,category,imageLink,tags] =req.body
         if (response.status === 201) {
          res.send({message:"prodact uploud TO WordPress"});
          console.log(response);
-           bot.sendMessage( "@Nouvellarrivee",`Nouvelles Arrivées 🥳🥳
-[product title] ${response.data.price}€ Ne manquez pas le nouvel article a atterri sur notre site
+         //telgram bot
+           bot.sendMessage( "@Nouvellarrivee",`${response.data.permalink}
+           Nouvelles Arrivées 🥳🥳
+           ${response.data.name} ${response.data.price}€ Ne manquez pas le nouvel article a atterri sur notre site
 
 COOPE Fashion - Votre mode notre passion 🔥 
-           ${response.data.permalink}`);
+         `);
 
           //  facebook post
             FB.api(
@@ -106,7 +102,7 @@ COOPE Fashion - Votre mode notre passion 🔥
       
   };
    const getAlltags = async( req , res) => {
- 
+   
   await  WooCommerce.get("products/tags?per_page=100",)
       .then((response) => {
     //  console.log(response.data.length);

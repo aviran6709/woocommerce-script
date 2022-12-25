@@ -15,7 +15,9 @@
     "cors": "^2.8.5",
     "fb": "^2.0.0",
     "node-telegram-bot-api": "^0.60.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "puppeteer": "^19.4.1",
+    "puppeteer-core": "^1.9.0"
   },
   "devDependencies": {
     "@types/node-telegram-bot-api": "^0.57.6"
