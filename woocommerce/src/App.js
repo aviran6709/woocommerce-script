@@ -1,5 +1,6 @@
 import React from "react";
 import CheckboxesTags from "./ComboBox";
+import toast, { Toaster } from 'react-hot-toast';
 import { scrapData, createNewProduct, getCategories, getTags } from "./api";
 import "./App.css";
 import ImageList from "./ImageLIst";
@@ -11,12 +12,13 @@ function App() {
   const [checkTags, setCheckTags] = React.useState([]);
   const [image, setImage] = React.useState([]);
   //scarp
-  const [scrapInfoState, setScarpInfo ] = React.useState({ price:"",
+  const [scrapInfoState, setScarpInfo ] = React.useState({ data:{price:"",
+url:""},
     images:[ { "src": ""}]});
   let valueScrap;
 
   //edit the data before sending to woocomere
-  const handleClick = (evt) => {
+  const handleClick = async(evt) => {
     evt.preventDefault();
 
     const category = checkData.map((item) => {
@@ -27,7 +29,8 @@ function App() {
     });
     const arr = [inputData, category, image, tags];
     console.log(arr);
-    // createNewProduct(arr);
+     createNewProduct(arr)
+  
   };
 
   // get info from user
@@ -52,12 +55,15 @@ function App() {
     const scrapInfo = await scrapData(valueScrap).then(response => response.json())
 .then(response => {
   console.log(response);
-  response.price.substring(1);
+  response.data.price.substring(1);
   setScarpInfo({
-    price:response.price,
+    data:{
+      price:response.data.price,
+      url:response.data.url
+    } ,
     images:response.image
   })
-  console.log(scrapInfoState);
+ 
 }).catch(console.log);
 
 
@@ -112,6 +118,7 @@ function App() {
 
   return (
     <div className="App">
+      <div><Toaster/></div>
       <form method="POST" onSubmit={handleSubmit}>
         <div className="form-content">
           <div className="info">
@@ -133,7 +140,7 @@ function App() {
             <div>
               <label>Prodact price</label>
               <input
-             defaultValue={scrapInfoState.price?`${Math.ceil(scrapInfoState.price.substring(1)/3.7)}`:""}
+             defaultValue={scrapInfoState.data.price?`${Math.ceil(scrapInfoState.data.price.substring(1)/3.72)}`:""}
                 type="text"
                 placeholder="Enter prodact price"
                 name="price"
@@ -147,6 +154,7 @@ function App() {
             <div>
               <label> Link to Aliexpress</label>
               <input
+              defaultValue={scrapInfoState.data.url}
                 type="url"
                 placeholder="Enter prodact link to Aliexpress"
                 name="link"

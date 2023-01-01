@@ -24,22 +24,24 @@ const scrapBot = async (link) => {
 
     return imageBank;
   };
-  const scrapPrice = async () => {
-    let price = await page.evaluate(() => {
+  const scrapData = async () => {
+    let info = await page.evaluate(() => {
       let priceTag = document.querySelector(".price");
-      return priceTag.innerText;
+      let aliLink = document.querySelector(".cart");
+
+      return { price: priceTag.innerText, url: aliLink.action };
     });
 
-    return price;
+    return info;
   };
 
-  const price = await scrapPrice();
+  const data = await scrapData();
   const image = await scrapImage();
   await browser.close();
   const sortedImageArray = image.map((item) => {
     return { src: item };
   });
-  return { price: price, image: sortedImageArray };
+  return { data: data, image: sortedImageArray };
 };
 
 module.exports = { scrapBot };

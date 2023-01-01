@@ -1,4 +1,4 @@
-
+import toast  from 'react-hot-toast';
 export const getCategories = () => {
   return fetch(`http://localhost:3003`).then((res) => {
     if (res.ok) {
@@ -29,7 +29,18 @@ export const createNewProduct = (data) => {
     body: JSON.stringify(data)
 })
 .then(response => response.json())
-.then(response => console.log(JSON.stringify(response))).catch(console.log)
+.then((res=>{
+if(res.name ==="Error")
+{  toast.error(res.message);}
+else{
+  toast.success(res.message);
+}
+console.log(res);
+}))
+
+.catch((err)=>{console.log(err.message)
+  toast.error(err.message);
+})
 };
 export const scrapData = (url) => {
 

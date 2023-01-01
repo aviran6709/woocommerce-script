@@ -33,7 +33,7 @@ const [inputData,category,imageLink,tags] =req.body
     external_url: inputData.link,
     tags:tags,
     categories: category,
-    short_description: inputData.description?  inputData.description :`Tailles : M-2XL
+    short_description: inputData.description?  inputData.description :`
     Sélection de l'article selon le code couleur/modèle qui apparaît sur les photos du poste,
     Faites correspondr e le code/la couleur dans le lien en fonction des images de publication.`,
     //its about how to buy its static
@@ -51,7 +51,7 @@ const [inputData,category,imageLink,tags] =req.body
      WooCommerce.post("products", itemData)
   
       .then((response) => {
-    
+        console.log(response)
         if (response.status === 201) {
          res.send({message:"prodact uploud TO WordPress"});
          console.log(response);
