@@ -1,7 +1,7 @@
 
   const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
   const TelegramBot = require('node-telegram-bot-api');
-//facbook requirement
+//facebook requirement
   const FB = require('fb');
   const ACCESS_TOKEN = 'EAASZAZCpB2n04BACq3ohwG6cqEljO4AyolfUPVZA64hZAQDJb5ZA02P9v63HEMl1miOJcZBaJvR4LmZCp6lQvvZAgJKDr9qoOcPqZCLH4Od7ZAMtMmaJu2qXrBqHPFRjs2k7iUhWHwXsXLC0nvEZCDMFCflK0kBg3DyVz8g35ZAtalqfuTvzoyENcSBZByO8b9TBqTZBxFKT2jV5CZCyQZDZD';
   FB.setAccessToken(ACCESS_TOKEN);
@@ -12,7 +12,7 @@
   const bot = new TelegramBot(token, {polling: true});
   
 
-//woocomers token 
+//woocommerce token 
   const WooCommerce = new WooCommerceRestApi({
     url: "https://coope-fashion.store/",
     consumerKey: "ck_758c95a055ecbcb64758ead650d9b895e5831da9",
@@ -23,7 +23,7 @@
 
 
  const uploudProduct =  ( req , res) => {
-const [inputData,category,imageLink,tags] =req.body
+const [inputData,category,imageLink,tags, tgSwitch, fbSwitch] =req.body
 
    const itemData ={
     name: inputData.name,
@@ -49,21 +49,22 @@ const [inputData,category,imageLink,tags] =req.body
 }
 
      WooCommerce.post("products", itemData)
-  
       .then((response) => {
         console.log(response)
         if (response.status === 201) {
          res.send({message:"prodact uploud TO WordPress"});
          console.log(response);
-         //telgram bot
-           bot.sendMessage( "@Nouvellarrivee",`${response.data.permalink}
+         //telegram bot
+         if(tgSwitch){
+          bot.sendMessage( "@Nouvellarrivee",`${response.data.permalink}
            Nouvelles Arrivées 🥳🥳
            ${response.data.name} ${response.data.price}€ Ne manquez pas le nouvel article a atterri sur notre site
-
 COOPE Fashion - Votre mode notre passion 🔥 
          `);
-
+         }
+ 
           //  facebook post
+          if(fbSwitch){
             FB.api(
               '/103206304926273/feed/',
               'POST',
@@ -81,6 +82,8 @@ COOPE Fashion - Votre mode notre passion 🔥
          
          }
         );
+        
+      }
         }
       })
       .catch((error) => {

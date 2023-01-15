@@ -1,24 +1,30 @@
 import React from "react";
 import CheckboxesTags from "./ComboBox";
-import toast, { Toaster } from 'react-hot-toast';
+import ControlledSwitches from "./IosSwitchStyle";
+import  { Toaster } from "react-hot-toast";
 import { scrapData, createNewProduct, getCategories, getTags } from "./api";
 import "./App.css";
 import ImageList from "./ImageLIst";
+
 function App() {
+  const [tgSwitch, setTgSwitch] = React.useState(true);
+  const [fbSwitch, setFbCSwitch] = React.useState(true);
   const [categories, setCategories] = React.useState([]);
   const [tags, setTags] = React.useState([]);
   const [inputData, setInputData] = React.useState({});
+  //check box input state
   const [checkData, setCheckData] = React.useState([]);
   const [checkTags, setCheckTags] = React.useState([]);
   const [image, setImage] = React.useState([]);
   //scarp
-  const [scrapInfoState, setScarpInfo ] = React.useState({ data:{price:"",
-url:""},
-    images:[ { "src": ""}]});
+  const [scrapInfoState, setScarpInfo] = React.useState({
+    data: { price: "", url: "" },
+    images: [{ src: "" }],
+  });
   let valueScrap;
 
-  //edit the data before sending to woocomere
-  const handleClick = async(evt) => {
+  //edit the data before sending to woocommerce
+  const handleClick = async (evt) => {
     evt.preventDefault();
 
     const category = checkData.map((item) => {
@@ -27,10 +33,9 @@ url:""},
     const tags = checkTags.map((item) => {
       return { id: item.id };
     });
-    const arr = [inputData, category, image, tags];
-    console.log(arr);
-     createNewProduct(arr)
-  
+    const arr = [inputData, category, image, tags ,tgSwitch, fbSwitch];
+    
+    createNewProduct(arr);
   };
 
   // get info from user
@@ -42,34 +47,29 @@ url:""},
     });
   }
 
-
   //get the link from user
   function handleScrap(evt) {
     valueScrap = evt.target.value;
   }
 
-
-  //work here scrap all the info and try with state to add it to input value
+  
   const onScrap = async (e) => {
     e.preventDefault();
-    const scrapInfo = await scrapData(valueScrap).then(response => response.json())
-.then(response => {
-  console.log(response);
-  response.data.price.substring(1);
-  setScarpInfo({
-    data:{
-      price:response.data.price,
-      url:response.data.url
-    } ,
-    images:response.image
-  })
- 
-}).catch(console.log);
-
-
- 
+ await scrapData(valueScrap)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        response.data.price.substring(1);
+        setScarpInfo({
+          data: {
+            price: response.data.price,
+            url: response.data.url,
+          },
+          images: response.image,
+        });
+      })
+      .catch(console.log);
   };
-
 
   const handleCheck = (evt) => {
     let data = checkData;
@@ -96,7 +96,7 @@ url:""},
       .catch(console.log);
   };
   //get tags from woocomere
-  const getAlltags = () => {
+  const getAllTags = () => {
     getTags()
       .then((res) => {
         let info = res.map((tag) => {
@@ -113,16 +113,22 @@ url:""},
 
   React.useEffect(() => {
     getAllCategories();
-    getAlltags();
+    getAllTags();
   }, []);
 
   return (
     <div className="App">
-      <div><Toaster/></div>
+      <header>
+        <h2>Improve your business</h2>
+      </header>
+      <ControlledSwitches socialNet={[tgSwitch, setTgSwitch, fbSwitch,setFbCSwitch]}/>
+      <div>
+        <Toaster />
+      </div>
       <form method="POST" onSubmit={handleSubmit}>
         <div className="form-content">
           <div className="info">
-            <h3> Info</h3>
+            <h3> INFO</h3>
             <div>
               <label>Prodact name</label>
               <input
@@ -140,12 +146,17 @@ url:""},
             <div>
               <label>Prodact price</label>
               <input
-             defaultValue={scrapInfoState.data.price?`${Math.ceil(scrapInfoState.data.price.substring(1)/3.72)}`:""}
+                defaultValue={
+                  scrapInfoState.data.price
+                    ? `${Math.ceil(
+                        scrapInfoState.data.price.substring(1) / 3.72
+                      )}`
+                    : ""
+                }
                 type="text"
                 placeholder="Enter prodact price"
                 name="price"
                 required
-            
                 onChange={handleChange}
                 autoComplete="on"
                 className="form__input"
@@ -154,7 +165,7 @@ url:""},
             <div>
               <label> Link to Aliexpress</label>
               <input
-              defaultValue={scrapInfoState.data.url}
+                defaultValue={scrapInfoState.data.url}
                 type="url"
                 placeholder="Enter prodact link to Aliexpress"
                 name="link"
@@ -178,13 +189,13 @@ url:""},
                   className="form__input"
                 ></textarea>
               </div>
-              <h3> Tags</h3>
+              <h3> TAGS</h3>
 
               <CheckboxesTags tagsName={tags} setState={setCheckTags} />
             </div>
           </div>
           <div className="check-box">
-            <h3> Categories</h3>
+            <h3> CATEGORIES</h3>
             {categories.map((category) => {
               return (
                 <div key={category.id}>
@@ -203,7 +214,14 @@ url:""},
             })}
           </div>
 
-          <ImageList setImage={setImage} setScarpInfo={setScarpInfo} scrapImageList={scrapInfoState.images}></ImageList>
+          <ImageList
+            setImage={setImage}
+            setScarpInfo={setScarpInfo}
+            scrapImageList={scrapInfoState.images}
+          ></ImageList>
+
+
+       
         </div>
 
         <button
@@ -211,7 +229,7 @@ url:""},
           type="submit"
           onClick={handleClick}
         >
-          Submit
+          SUBMIT
         </button>
       </form>
       <form method="POST" onSubmit={(e) => onScrap(e)}>
@@ -225,7 +243,7 @@ url:""},
           autoComplete="on"
           className="form__input"
         ></input>
-        <button type="submit">do magic</button>
+        <button type="submit">GET INFO</button>
       </form>
     </div>
   );

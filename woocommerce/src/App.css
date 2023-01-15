@@ -13,6 +13,22 @@ input{
   line-height: 20px;
   margin: 10px 0;
 }
+h4{
+  margin-bottom: 0;
+  font-weight: bolder;
+}
+h2{
+  margin: auto;
+  color: #fa8072;
+  width: fit-content;
+ 
+  border-bottom: 1px solid rgb(124, 88, 22);
+}
+.switch-box{
+  width:350px;
+  margin: auto;
+}
+
 
 .form__submit-btn{
   width: 200px;
