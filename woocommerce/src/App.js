@@ -118,6 +118,7 @@ function App() {
 
   return (
     <div className="App">
+
       <header>
         <h2>Improve your business</h2>
       </header>
@@ -125,26 +126,26 @@ function App() {
       <div>
         <Toaster />
       </div>
-      <form method="POST" onSubmit={handleSubmit}>
-        <div className="form-content">
+      <form className="form-row" method="POST" onSubmit={handleSubmit}>
+        <div className="form-content col-md-10 mb-3">
           <div className="info">
             <h3> INFO</h3>
             <div>
-              <label>Prodact name</label>
+              <label >Product name</label>
               <input
                 type="text"
-                placeholder="Enter prodact name"
+                placeholder="Enter product name"
                 name="name"
                 required={true}
                 minLength="2"
                 maxLength="40"
                 onChange={handleChange}
                 autoComplete="on"
-                className="form__input"
+                className="form__input form-control"
               ></input>
             </div>
             <div>
-              <label>Prodact price</label>
+              <label>Product price</label>
               <input
                 defaultValue={
                   scrapInfoState.data.price
@@ -154,12 +155,12 @@ function App() {
                     : ""
                 }
                 type="text"
-                placeholder="Enter prodact price"
+                placeholder="Enter product price"
                 name="price"
                 required
                 onChange={handleChange}
                 autoComplete="on"
-                className="form__input"
+                className="form__input form-control"
               ></input>
             </div>
             <div>
@@ -167,12 +168,12 @@ function App() {
               <input
                 defaultValue={scrapInfoState.data.url}
                 type="url"
-                placeholder="Enter prodact link to Aliexpress"
+                placeholder="Enter product link to Aliexpress"
                 name="link"
                 required
                 onChange={handleChange}
                 autoComplete="on"
-                className="form__input"
+                className="form__input form-control"
               ></input>
             </div>
             <div>
@@ -181,12 +182,12 @@ function App() {
                 <textarea
                   rows="4"
                   type="text"
-                  placeholder="Enter prodact description"
+                  placeholder="Enter product description"
                   name="description"
                   required
                   onChange={handleChange}
                   autoComplete="on"
-                  className="form__input"
+                  className="form__input form-control"
                 ></textarea>
               </div>
               <h3> TAGS</h3>
@@ -198,8 +199,9 @@ function App() {
             <h3> CATEGORIES</h3>
             {categories.map((category) => {
               return (
-                <div key={category.id}>
+                <div className="custom-control custom-checkbox" key={category.id}>
                   <input
+                  className="custom-control-input"
                     key={category.id}
                     type="checkbox"
                     id={category.id}
@@ -208,7 +210,7 @@ function App() {
                       handleCheck(e);
                     }}
                   />
-                  <label>{category.name}</label>
+                  <label className="custom-control-label">{category.name}</label>
                 </div>
               );
             })}
@@ -225,7 +227,7 @@ function App() {
         </div>
 
         <button
-          className="form__submit-btn"
+          className="btn btn-outline-success "
           type="submit"
           onClick={handleClick}
         >
@@ -233,18 +235,20 @@ function App() {
         </button>
       </form>
       <form method="POST" onSubmit={(e) => onScrap(e)}>
-        <label> Link to prodact</label>
+        <label> Link to product</label>
         <input
           type="url"
-          placeholder="Enter prodact link "
+          placeholder="Enter product link "
           name="link"
           required
           onChange={handleScrap}
           autoComplete="on"
-          className="form__input"
+          className="form__input form-control"
         ></input>
-        <button type="submit">GET INFO</button>
+        <button className="btn btn-outline-success" type="submit">GET INFO</button>
       </form>
+
+      
     </div>
   );
 }

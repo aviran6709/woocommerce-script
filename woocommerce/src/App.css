@@ -59,7 +59,7 @@ body{
   background-color: #dae0f2;
 }
 
-button{
+/* button{
   width: fit-content;
   height: 30px;
   margin-top: 20px;
@@ -71,7 +71,7 @@ cursor: pointer;
 }
 button:hover{
   background-color: rgb(85, 8, 8); 
-}
+} */
 label{
   margin: 5px;
 color: #3A2E39;

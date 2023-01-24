@@ -28,6 +28,7 @@ export default function CheckboxesTags({ tagsName, setState }) {
       renderOption={(props, option, { selected }) => (
         <li {...props}>
           <Checkbox
+          className="form-check-input"
             icon={icon}
             checkedIcon={checkedIcon}
             style={{ marginRight: 8 }}

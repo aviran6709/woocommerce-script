@@ -8,8 +8,8 @@
  
 
   //Telegram Token
-  const token = '5884733933:AAHkAJ2fEjdLajlb3HekQ9yCKAwymDMLjKQ';
-  const bot = new TelegramBot(token, {polling: true});
+  const TOKEN = '5884733933:AAHkAJ2fEjdLajlb3HekQ9yCKAwymDMLjKQ';
+  const bot = new TelegramBot(TOKEN, {polling: true});
   
 
 //woocommerce token 

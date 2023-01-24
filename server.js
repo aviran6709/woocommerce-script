@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require("express");
 const bodyParser = require("body-parser");
-const api =require("./controllers/serverApi.js")
+const api =require("./controllers/main.js")
 const scraper=require("./controllers/scraperApi")
 const app = express();
 const PORT = 3003;

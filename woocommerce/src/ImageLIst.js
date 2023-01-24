@@ -44,11 +44,11 @@ function ImageList({ setImage, scrapImageList }) {
               onChange={(e) => handleInputChange(e, i)}
             />
             {inputList.length !== 1 && (
-              <button onClick={() => handleRemoveClick(i)}>X</button>
+              <button className="btn btn-outline-danger" onClick={() => handleRemoveClick(i)}>X</button>
             )}
             <img
             alt="prevue product"
-              className="image-prevue"
+              className="image-prevue "
               src={
                 item.src
                   ? item.src
@@ -58,7 +58,7 @@ function ImageList({ setImage, scrapImageList }) {
           </div>
         );
       })}
-      {<button onClick={handleAddClick}>Add URL</button>}
+      {<button className="btn btn-outline-primary" onClick={handleAddClick}>Add URL</button>}
 
       {/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
     </div>
