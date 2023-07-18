@@ -6,7 +6,7 @@ const data = [{
     name: " ",
     type: "external",
     regular_price: "",
-    button_text: "Aller sur Aliexpress",
+    button_text: "Aller sur",
     external_url:'',
 
     short_description: ``
@@ -21,7 +21,7 @@ const data = [{
     Pour toute question nous sommes disponibles sur Whatsapp et Telegram à partir du bouton ci-dessous.`,
     images: [
       {
-        src: "https://www.dianazohar.com/wp-content/uploads/2022/11/ba800c65.png"
+        src: "https://www.lovepets.com/wp-content/uploads/2022/11/ba800c65.png"
       },
 
     ]
