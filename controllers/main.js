@@ -3,20 +3,20 @@
   const TelegramBot = require('node-telegram-bot-api');
 //facebook requirement
   const FB = require('fb');
-  const ACCESS_TOKEN = 'EAASZAZCpB2n04BACq3ohwG6cqEljO4AyolfUPVZA64hZAQDJb5ZA02P9v63HEMl1miOJcZBaJvR4LmZCp6lQvvZAgJKDr9qoOcPqZCLH4Od7ZAMtMmaJu2qXrBqHPFRjs2k7iUhWHwXsXLC0nvEZCDMFCflK0kBg3DyVz8g35ZAtalqfuTvzoyENcSBZByO8b9TBqTZBxFKT2jV5CZCyQZDZD';
+  const ACCESS_TOKEN = '';
   FB.setAccessToken(ACCESS_TOKEN);
  
 
   //Telegram Token
-  const TOKEN = '5884733933:AAHkAJ2fEjdLajlb3HekQ9yCKAwymDMLjKQ';
+  const TOKEN = '';
   const bot = new TelegramBot(TOKEN, {polling: true});
   
 
 //woocommerce token 
   const WooCommerce = new WooCommerceRestApi({
     url: "https://coope-fashion.store/",
-    consumerKey: "ck_758c95a055ecbcb64758ead650d9b895e5831da9",
-    consumerSecret: "cs_d8c8bd9befaed28e4956cea49681f346d14dcee2",
+    consumerKey: "",
+    consumerSecret: "",
     version: "wc/v3",
   });
   
@@ -29,7 +29,7 @@ const [inputData,category,imageLink,tags, tgSwitch, fbSwitch] =req.body
     name: inputData.name,
     type: "external",
     regular_price:inputData.price,
-    button_text: "Aller sur Aliexpress",
+    button_text: "",
     external_url: inputData.link,
     tags:tags,
     categories: category,
