@@ -4,19 +4,19 @@ With the help of this script you can also control the marketing and advertising 
 It is a useful and effective tool
 
 ##How to Install and Run the Project
-clon the project 
-npm i 
-npm run server
-npm start app
+clon the project <br />
+npm i <br />
+npm run server <br />
+npm start app<br />
 
 ##Technologies used
-puppeteer
-express
-react
-Bootstrap
-woo Api
-meta APi
-Telegram Api
+puppeteer<br />
+express<br />
+react<br />
+Bootstrap<br />
+woo Api<br />
+meta APi<br />
+Telegram Api<br />
 
 ##License
-Free for all
+Free for all<br />
