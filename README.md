@@ -1,35 +1,30 @@
-# woocommerce-script<br />
+# WooCommerce Script
 
-This script will help to scan products from another woocommerce store and upload  the  product to your website quickly and easily<br />
-With the help of this script you can also control the marketing and advertising of the new products on the website on Facebook and Telegram
-It is a useful and effective tool
+## Overview
 
-## How to Install and Run the Project<br />
+This script helps you scan products from another WooCommerce store and upload them to your website quickly and easily. With this script, you can also manage the marketing and advertising of new products on Facebook and Telegram. It’s a useful and effective tool for streamlining product management and promotion.
 
-clon the project <br />
-```bash
-git clone
-```
-```bash
-npm i
-```
-```bash
-npm run server
-```
-```bash
-npm start app
-```
+## Features
 
-## Technologies used<br />
+- **Product Scanning**: Automatically scans products from another WooCommerce store.
+- **Product Uploading**: Easily uploads scanned products to your website.
+- **Marketing and Advertising**: Manage product marketing and advertising on Facebook and Telegram.
 
-puppeteer<br />
-express<br />
-react<br />
-Bootstrap<br />
-woo Api<br />
-meta APi<br />
-Telegram Api<br />
+## Technologies Used
 
-## License <br />
-Free for all<br />
-[MIT](https://choosealicense.com/licenses/mit/)
+This project utilizes the following technologies:
+
+- **Puppeteer**: For web scraping and automation.
+- **Express**: For building the server-side application.
+- **React**: For the front-end interface.
+- **Bootstrap**: For styling the front-end interface.
+- **WooCommerce API**: For interacting with WooCommerce stores.
+- **Meta API**: For Facebook marketing and advertising.
+- **Telegram API**: For Telegram integration.
+
+## Installation and Running the Project
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/woocommerce-script.git
